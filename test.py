@@ -61,15 +61,37 @@ for n in num:
         num.remove(n)
 print('final:',num)
 '''
-src = {'a':{'b':1,'c':2},'d':{'e':3,'f':{'g':4}}}
-target = {}
-def flatmap(src:dict,prefix=''):
-    for k,v in src.items():#v={'b':1,'c':2}
-        if isinstance(v,(dict,)):#v是字典，则继续递归
-            prefix = prefix +k +'.'  #'a.'
-            flatmap(v,prefix)
-            prefix = ''
-        else:
-            target[prefix + k] = v   #'a.b'
-    return target
-print(flatmap(src))
+# print(list(filter(lambda x:x%3==0,[1,9,55,150,-3,78,28,123])))
+# a= filter(lambda x:x%3==0,[1,9,55,150,-3,78,28,123])
+# print(next(a))
+# print(next(a))
+# print(next(a))
+#
+# def logger(fn):  #这里面是形参
+#     def inner(*args,**kwargs):
+#         print('called function {}. x={}, y = {}'.format(fn.__name__,*args))
+#         ret = fn(*args,**kwargs)    #这里面是参数的结构
+#         return ret
+#     return inner        #这里面柯里化一下
+#
+# @logger
+# def add(x,y):
+#     return x + y
+#
+# ret = add(4,5)
+# print(ret)
+from functools import lru_cache
+import time
+@lru_cache()
+def add(x=4,y=5):
+    time.sleep(3)
+    return x + y
+print(1,add(4,5))
+print(2,add(4))
+print(3,add(y=5))
+print(4,add(x=4,y=5))
+print(5,add(y=5,x=4))
+
+
+
+
